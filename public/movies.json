@@ -1,1 +1,51 @@
+[
+    
+    {
+        "name": "Psycho",
+        "date": "6/16/1960",
+        "actors": ["Anthony Perkins", "Vera Miles", "John Gavin"],
+        "poster": "images/psycho.jpg",
+        "rating": 4
+    },
 
+    {
+        "name": "The Exorcist",
+        "date": "12/26/1973",
+        "actors": ["Ellen Burstyn", "Linda Blair", "Jason Miller"],
+        "poster": "images/exorcist.jpg",
+        "rating": 4
+    },
+
+    {
+        "name": "Aliens",
+        "date": "7/18/1986",
+        "actors": ["Sigourney Weaver", "Michael Biehn", "Paul Reiser"],
+        "poster": "images/aliens.jpg",
+        "rating": 5
+    },
+
+    {
+        "name": "The Slience of the Lambs",
+        "date": "2/14/1991",
+        "actors": ["Jodie Foster", "Anthony Hopkins", "Ted Levine"],
+        "poster": "images/lambs.jpg",
+        "rating": 5
+    },
+
+    {
+        "name": "Shaun of the Dead",
+        "date": "4/9/2004",
+        "actors": ["Simon Pegg", "Nick Frost", "Kate Ashfield"],
+        "poster": "images/shaun.jpg",
+        "rating": 4.5
+    },
+
+    {
+        "name": "Hereditary",
+        "date": "6/8/2018",
+        "actors": ["Toni Collette", "Alex Wolff", "Milly Shapiro"],
+        "poster": "images/hereditary.jpg",
+        "rating": 4.5
+    }
+
+]
