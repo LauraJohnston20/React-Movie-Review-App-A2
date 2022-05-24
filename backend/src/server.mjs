@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 const app = express();
 
@@ -16,41 +16,45 @@ app.post( '/hello', (req, res) => {
 
 const client = new MongoClient('mongodb://127.0.0.1:27017');
 
+// Add movie
 app.post('/api/addMovie', async (req, res) => {
     try {
+        console.log(req.body)
+
         await client.connect();
-
         const db = client.db('movies');
-
-        const movieInfo = await db.collection('mymovies').insertOne(req.body);
-        console.log(req.body);
-
-        res.sendStatus(200);
+    
+        const movieInfo = await db.collection('mymovies').insertOne(req.body);    
 
         client.close();
+       // res.json({message:"Movie successfully added.", movies: movieInfo});
+        res.status(200).send({message:"Movie successfully added.", movies: movieInfo}).end();
+
+        return;
     }
     catch (error) {
         res.sendStatus(500);
     }
 });
 
+// Delete movie
 
+
+
+// Movie data
 app.get('/api/data', async (req, res) => {
     try {
-        
         await client.connect();
         const db = client.db("movies");
 
         const movieInfo = await db.collection('mymovies').find({}).toArray();
-        console.log(movieInfo);
         res.status(200).json(movieInfo);
         client.close();
     }
     catch (error) {
         res.status(500).json({error});
     }
-
-})
+});
 
 app.listen( 8000, () => console.log('Listening on port 8000'));
 
