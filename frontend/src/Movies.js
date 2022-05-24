@@ -10,7 +10,7 @@ export function Movie( {name, date, actors, poster, rating, onRemove = f => f} )
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>
                     <div>Release Date: {date}</div>
-                    <div>Starring: {actors?.join(", ")}</div>
+                    <div>Starring: {actors}</div>
                     <div>Rating: {rating}</div>
                 </Card.Text>
                 <Button onClick={() => onRemove(name)}>Remove</Button>
@@ -22,7 +22,7 @@ export function Movie( {name, date, actors, poster, rating, onRemove = f => f} )
 }
 
 export function MovieList( { movies = [], onRemoveMovie = f => f } ) {
-    if ( movies == null || movies == undefined ||!movies.length) 
+    if ( movies === null || movies === undefined || !movies.length) 
         return <h2>No movies available</h2>;
     
         return(

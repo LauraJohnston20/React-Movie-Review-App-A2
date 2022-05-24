@@ -22,20 +22,17 @@ export function AddReview({movies, setMovies}){
         <>
         <br></br>
         <h3>Add Movie Review</h3>
-            <AddReviewForm onAddReview={ (newMovie) => {
-                const addMovie = async () => {
-                    const result = await fetch ('/api/addMovie', {
-                        method: "post",
-                        body: newMovie,
-                    });
-                    console.log("RESULT", result);
-                    const body = await result.json();
-                    setMovies(body.movies);
-                    console.log("BODY", body)
-                    console.log("BODY.MOVIES" + body.movies);
-                }
+            <AddReviewForm onAddReview={ async (newMovie) => {
+                console.log(newMovie);
+                const result = await fetch ('/api/addMovie', {
+                    method: "POST",
+                    body: JSON.stringify(newMovie),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                });
+                setMovies([...movies, newMovie]);
                 console.log("NEW MOVIE", newMovie);
-                addMovie();
             }}/>
         </>
     );
