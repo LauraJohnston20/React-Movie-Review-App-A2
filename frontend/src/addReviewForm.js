@@ -8,14 +8,20 @@ export function AddReviewForm({onAddReview = f => f}) {
     const [date, setDate] = useState("");
     const [actors, setActors] = useState([]);
     const [poster, setPoster] = useState("");
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const navigate = useNavigate();
 
     const submit = evt => {
         evt.preventDefault();
 
-        onAddReview(name, date, actors.split(", "), poster, rating);
-        navigate('/');
+        if (name === "" || date === "" || actors === "" || rating === "") {
+          alert("Please fill all fields.");
+          return;
+        }
+        let newMovie = {name, date, actors, poster, rating};
+
+        onAddReview(newMovie);
+        navigate("/");
     }
 
     return (

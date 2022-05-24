@@ -6,7 +6,7 @@ import { Home, AddReview } from "./pages";
 import { NavBar } from './pages'
 
 
-function App({secret: sc}) {
+function App() {
 
   const [movies, setMovies] = useState([]);
 
@@ -15,38 +15,6 @@ function App({secret: sc}) {
     .then((response) => response.json())
     .then(setMovies)
 }, []);
-
-/*
-  useEffect( () => {
-    const fetchData = async () => {
-      const result = await fetch ('/api/data')
-      const jsonResult = result.json()
-
-      setMovies(jsonResult)
-      console.log("Here are results", result)
-    }
-
-    fetchData()
-  }, [])
-*/
-
-    /*fetch("/api/data")
-    .then(async response => {
-      try {
-        const data = await response.json()
-        console.log('response data', data)
-      } catch (error) {
-        console.log("ERROR OCCURRING", error)
-        console.error(error)
-      }
-    })*/
-
-
-  /*  fetch('/api/data')                    // fetch from backend
-    .then( response => response.json() )
-    .then( setMovies )
-    .catch( e => console.log(e.message) );
-  }, [])*/
 
   return (
     <div className='App'>

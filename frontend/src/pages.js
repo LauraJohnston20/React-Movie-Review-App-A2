@@ -22,12 +22,20 @@ export function AddReview({movies, setMovies}){
         <>
         <br></br>
         <h3>Add Movie Review</h3>
-            <AddReviewForm onAddReview={(name, date, actors, poster, rating) => {
-                const newMovies = [
-                    ...movies,
-                    {name, date, actors, poster, rating}
-                ];
-                setMovies(newMovies);
+            <AddReviewForm onAddReview={ (newMovie) => {
+                const addMovie = async () => {
+                    const result = await fetch ('/api/addMovie', {
+                        method: "post",
+                        body: newMovie,
+                    });
+                    console.log("RESULT", result);
+                    const body = await result.json();
+                    setMovies(body.movies);
+                    console.log("BODY", body)
+                    console.log("BODY.MOVIES" + body.movies);
+                }
+                console.log("NEW MOVIE", newMovie);
+                addMovie();
             }}/>
         </>
     );
