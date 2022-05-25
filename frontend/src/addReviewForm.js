@@ -14,10 +14,7 @@ export function AddReviewForm({onAddReview = f => f}) {
     const submit = evt => {
         evt.preventDefault();
 
-        if (name === "" || date === "" || actors === "" || rating === "") {
-          alert("Please fill all fields.");
-          return;
-        }
+        
         let newMovie = {name, date, actors, poster, rating};
 
         onAddReview(newMovie);
