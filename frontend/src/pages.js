@@ -7,8 +7,12 @@ import { Navbar, Nav, Container} from 'react-bootstrap';
 export function Home({movies, setMovies}){
     return(
         <>         
-            <MovieList movies={movies} onRemoveMovie = { movieName => {
-                        const newMovies = movies.filter(movie => movie.name !== movieName);
+            <MovieList movies={movies} onRemoveMovie = { async (id) => {
+                        console.log(id);
+                        const result = await fetch(`/api/delete/${id}`, {
+                            method: "DELETE",
+                        });
+                        const newMovies = movies.filter(movie => movie._id !== id);
                         setMovies(newMovies);
                     }
                 } 
