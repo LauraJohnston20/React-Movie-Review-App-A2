@@ -22,7 +22,7 @@ export function AddReviewForm({onAddReview = f => f}) {
     }
 
     return (
-        <Form className="pt-3 container-md border border-dark" onSubmit={submit} style={{textAlign:"left", marginTop:"20px"}}>
+        <Form className="pt-3 container-md border border-dark" encType="multipart/form-data" onSubmit={submit} style={{textAlign:"left", marginTop:"20px"}}>
         <div>
             <FormLabel className="form-label fw-bold">Movie Title:</FormLabel>
             <input className="form-control" onChange = {evt => setName(evt.target.value)}
