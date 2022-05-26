@@ -2,20 +2,20 @@ import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import path from "path";
 import { fileURLToPath } from "url";
+import bodyParser from 'body-parser';
 import multer from "multer";
 
 const app = express();
-
 app.use(express.json());
-app.use(express.urlencoded());
 
-app.delete( '/hello', (req, res) => res.send('Hello there!'));
-app.get( '/hello/:name', (req, res) => res.send(`Hello ${req.params.name}!`));
-app.post( '/hello', (req, res) => {
-    console.log(JSON.stringify(req.body.name));
-    res.send(`Hello ${req.body.name}!`)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const upload = multer({ filename: (req, file) => {file.originalname;}, dest: "./src/build/images/"});
 
-}); 
+app.use(express.static(path.join(__dirname, '/build')));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const client = new MongoClient('mongodb://127.0.0.1:27017');
 
@@ -38,6 +38,11 @@ app.post('/api/addMovie', async (req, res) => {
     catch (error) {
         res.sendStatus(500);
     }
+});
+
+// Upload image
+app.post('/api/upload', upload.single("image"), (req, res) => {
+    res.send("Image uploaded successfully.");
 });
 
 // Delete movie
